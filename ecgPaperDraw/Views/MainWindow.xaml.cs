@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ecgPaperDraw.ViewModels;
 
 namespace ecgPaperDraw
 {
@@ -20,25 +11,21 @@ namespace ecgPaperDraw
     /// </summary>
     public partial class MainWindow : Window
     {
+        PaperViewModel paperVM;
         public MainWindow()
         {
             InitializeComponent();
+            paperVM = new PaperViewModel();
+            this.DataContext = paperVM;
 
-            //myLine.X1 = 0;
-            //myLine.X2 = 800;
-            //myLine.Y1 = 0;
-            //myLine.Y2 = 0;
-            //myLine.HorizontalAlignment = HorizontalAlignment.Center;
-            //myLine.VerticalAlignment = VerticalAlignment.Center;
             myCanvas.Width = this.Width;
             myCanvas.Height = this.Height;
-            for (int x = 0; x < myCanvas.Width; x += 15)
+            for (double x = 0; x < myCanvas.Width; x += paperVM.SmallBlock)
             {
-                //myCanvas.DrawLine(Brushes.Pink, 1, 0, x, myCanvas.Width - x, 0);// It's so cool.
                 myCanvas.DrawLine(Brushes.Pink, 1, x, 0, x, this.Height);
                 myCanvas.DrawLine(Brushes.Pink, 1, 0, x, this.Width, x);
             }
-            for (int x = 0; x < myCanvas.Width; x += 75)
+            for (double x = 0; x < myCanvas.Width; x += paperVM.BigBlock)
             {
                 myCanvas.DrawLine(Brushes.Pink, 3, x, 0, x, this.Height);
                 myCanvas.DrawLine(Brushes.Pink, 3, 0, x, this.Width, x);
