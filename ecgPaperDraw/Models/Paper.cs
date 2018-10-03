@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ecgPaperDraw.Models
 {
-    class Paper
+    public class Paper
     {
+        public double smallBlock { get; set; }//小格子
+        public double bigBlock { get; set; }//大格子 
     }
 }
