@@ -6,8 +6,15 @@
         xmlns:local="clr-namespace:ecgPaperDraw"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid x:Name="myGrid">
-        <Canvas x:Name="myCanvas"></Canvas>
-        <!--<Line X1="0" Y1="225" X2="800" Y2="225" Stroke="Pink" StrokeThickness="4"></Line>-->
+        
+        <Grid x:Name="myGrid">
+        <ScrollViewer x:Name="iScrollviewer" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" CanContentScroll="True" Canvas.Left="20" Canvas.Top="10">
+            <Canvas x:Name="myCanvas" Width="792">
+                <Button x:Name="btnLoadData" Panel.ZIndex="2" Content="Load raw data" Canvas.Left="441" Canvas.Top="10" Width="160" Click="btnLoadData_Click" Height="30"/>
+                <TextBox x:Name="tbxShowData" Panel.ZIndex="2" Height="360" Canvas.Left="10" TextWrapping="Wrap" Text="TextBox" Canvas.Top="49" Width="259" Visibility="Hidden"/>
+                <Button x:Name="btnDrawEcg" Panel.ZIndex="2" Content="Draw ECG" Canvas.Left="622" Canvas.Top="10" Width="160" Height="30" Click="btnDrawEcg_Click"/>
+                <TextBox x:Name="tbxShowDataReal" Panel.ZIndex="2" Height="360" Canvas.Left="285" TextWrapping="Wrap" Text="TextBox" Canvas.Top="49" Width="259" ScrollViewer.CanContentScroll="True" VerticalScrollBarVisibility="Visible" Visibility="Hidden" />
+            </Canvas>
+        </ScrollViewer>
     </Grid>
 </Window>
