@@ -47,5 +47,4 @@ namespace ecgPaperDraw
             g.Children.Add(line);
         }
     }
-    //ref : https://social.msdn.microsoft.com/Forums/en-US/a1c67f63-3d3e-40a7-8853-adc634ee4b6a/drawing-multiple-lines-from-a-loop?forum=wpf
 }
