@@ -9,12 +9,17 @@
                 <!--Handy Controls-->
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/ThemesDefault.xaml"/>
                 <!--MahApps.Metro-->
-                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <!-- Accent and AppTheme setting -->
-                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+
+                <!-- accent resource -->
+                <!-- change "Cobalt" to the accent color you want -->
+
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Pink.xaml" />
+
+                <!-- theme resource -->
+                <!-- change "BaseLight" to the theme you want -->
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
