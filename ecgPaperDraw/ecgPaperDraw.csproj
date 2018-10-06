@@ -94,5 +94,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RawData\ECG_20150116_104704.txt" />
+    <Resource Include="RawData\ECG_20150118_105548.txt" />
+    <Resource Include="RawData\ECG_20150118_113534.txt" />
+    <Resource Include="RawData\ECG_20150118_115527.txt" />
+    <Resource Include="RawData\ECG_20150118_115814.txt" />
+    <Resource Include="RawData\ECG_20150308_114139.txt" />
+    <Resource Include="RawData\ECG_20150308_114738.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
