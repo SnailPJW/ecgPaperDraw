@@ -144,7 +144,7 @@ namespace ecgPaperDraw
                 {
                     continue;
                 }
-                sb.Append(string.Format("{0} : {1}{2}",BitConverter.ToString(tempByteArray)
+                sb.Append(string.Format("{1}{2}",BitConverter.ToString(tempByteArray)
                                                       ,iEcgDataArray[ii++]
                                                       ,Environment.NewLine));
             }

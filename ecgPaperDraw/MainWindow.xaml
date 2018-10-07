@@ -13,7 +13,7 @@
                 <Button x:Name="btnLoadData" Panel.ZIndex="2" Content="Load raw data" Canvas.Left="441" Canvas.Top="10" Width="160" Click="btnLoadData_Click" Height="30"/>
                 <TextBox x:Name="tbxShowData" Panel.ZIndex="2" Height="360" Canvas.Left="10" TextWrapping="Wrap" Text="TextBox" Canvas.Top="49" Width="259" Visibility="Hidden"/>
                 <Button x:Name="btnDrawEcg" Panel.ZIndex="2" Content="Draw ECG" Canvas.Left="622" Canvas.Top="10" Width="160" Height="30" Click="btnDrawEcg_Click"/>
-                <TextBox x:Name="tbxShowDataReal" Panel.ZIndex="2" Height="360" Canvas.Left="285" TextWrapping="Wrap" Text="TextBox" Canvas.Top="49" Width="259" ScrollViewer.CanContentScroll="True" VerticalScrollBarVisibility="Visible" Visibility="Hidden" />
+                <TextBox x:Name="tbxShowDataReal" Panel.ZIndex="2" Height="360" Canvas.Left="285" TextWrapping="Wrap" Text="TextBox" Canvas.Top="49" Width="259" ScrollViewer.CanContentScroll="True" VerticalScrollBarVisibility="Visible" />
             </Canvas>
         </ScrollViewer>
     </Grid>
