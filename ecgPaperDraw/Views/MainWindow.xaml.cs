@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using ecgPaperDraw.ViewModels;
 using MahApps.Metro.Controls;
 
@@ -31,6 +33,24 @@ namespace ecgPaperDraw
                 myCanvas.DrawLine(Brushes.Pink, 3, x, 0, x, this.Height);
                 myCanvas.DrawLine(Brushes.Pink, 3, 0, x, this.Width, x);
             }
+        }
+
+        private MetroWindow accentThemeTestWindow;
+
+        private void ChangeAppStyleButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (accentThemeTestWindow != null)
+            {
+                accentThemeTestWindow.Activate();
+                return;
+            }
+
+            accentThemeTestWindow = new AccentStyleWindow();
+            accentThemeTestWindow.Owner = this;
+            accentThemeTestWindow.Closed += (o, args) => accentThemeTestWindow = null;
+            accentThemeTestWindow.Left = this.Left + this.ActualWidth / 2.0;
+            accentThemeTestWindow.Top = this.Top + this.ActualHeight / 2.0;
+            accentThemeTestWindow.Show();
         }
     }
     public static class CanvasExt
