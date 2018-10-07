@@ -45,6 +45,7 @@ namespace ecgPaperDraw
             line.X2 = x2;
             line.Y2 = y2;
             g.Children.Add(line);
+            
         }
     }
 }

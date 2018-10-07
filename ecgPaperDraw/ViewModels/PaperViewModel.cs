@@ -23,7 +23,7 @@ namespace ecgPaperDraw.ViewModels
     public class PaperViewModel : ViewModelBase
     {
         private Paper _paper;
-        public PaperViewModel(double pixelsOfSmallBlock = 5.0)
+        public PaperViewModel(double pixelsOfSmallBlock = 15.0)
         {
             _paper = new Paper();
             _paper.smallBlock = pixelsOfSmallBlock;
