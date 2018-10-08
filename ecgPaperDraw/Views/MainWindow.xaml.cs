@@ -23,16 +23,27 @@ namespace ecgPaperDraw
 
             myCanvas.Width = this.Width;
             myCanvas.Height = this.Height;
-            for (double x = 0; x < myCanvas.Width; x += paperVM.SmallBlock)
+            double Thickness;
+            double paper2mv = paperVM.BigBlock * 4;
+            for (double x = 0; x <= myCanvas.Width; x += paperVM.SmallBlock)
             {
-                myCanvas.DrawLine(Brushes.Pink, 1, x, 0, x, this.Height);
-                myCanvas.DrawLine(Brushes.Pink, 1, 0, x, this.Width, x);
+                Thickness = 1;
+                if(x % paperVM.BigBlock == 0)
+                {
+                    Thickness = 3;
+                }
+                myCanvas.DrawLine(Brushes.Pink, Thickness, x, 0, x, paper2mv);//直線
             }
-            for (double x = 0; x < myCanvas.Width; x += paperVM.BigBlock)
+            for (double y = 0; y <= paper2mv; y += paperVM.SmallBlock)
             {
-                myCanvas.DrawLine(Brushes.Pink, 3, x, 0, x, this.Height);
-                myCanvas.DrawLine(Brushes.Pink, 3, 0, x, this.Width, x);
+                Thickness = 1;
+                if (y % paperVM.BigBlock == 0)
+                {
+                    Thickness = 3;
+                }
+                myCanvas.DrawLine(Brushes.Pink, Thickness, 0, y, this.Width, y);//橫線
             }
+            myCanvas.DrawSine(Brushes.Black, 3,0,paper2mv/2,paperVM.BigBlock);
         }
 
         private MetroWindow accentThemeTestWindow;
@@ -66,6 +77,22 @@ namespace ecgPaperDraw
             line.Y2 = y2;
             g.Children.Add(line);
             
+        }
+        public static void DrawSine(this Canvas g,Brush brush, double width ,double x0 = 0.0,double y0 = 180.0,double amplitude = 75.0,double frequency = 6.0,double phase = 0.0,double samples = 800.0)
+        {
+            var line = new Line();
+            double x1, y1;
+            double baseline = y0;
+
+            for (int i = 1; i <= samples; i++)
+            {
+                double wt = amplitude * Math.Sin(2.0 * Math.PI * frequency * i / samples);
+                x1 = i;
+                y1 = baseline - wt;
+                g.DrawLine(brush, width, x0, y0, x1, y1);
+                x0 = x1;
+                y0 = y1;
+            }
         }
     }
 }
