@@ -17,9 +17,7 @@ namespace ecgPaperDraw
     {
         PaperViewModel paperVM;
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-        dispatcherTimer.Interval = new TimeSpan(0,5,0);
-        dispatcherTimer.Start();
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -49,9 +47,13 @@ namespace ecgPaperDraw
                 myCanvas.DrawLine(Brushes.Pink, Thickness, 0, y, this.Width, y);//橫線
             }
             myCanvas.DrawSine(Brushes.Black, 3,0,paper2mv/2,paperVM.BigBlock);
+
+            dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 5, 0);
+            dispatcherTimer.Start();
         }
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             // code goes here
         }
@@ -85,39 +87,6 @@ namespace ecgPaperDraw
                 x0 = x1;
                 y0 = y1;
             }
-        }
-        public static void DrawSineAnimated(this Canvas g, Brush brush, double width, double x0 = 0.0, double y0 = 180.0, double amplitude = 75.0, double frequency = 6.0, double phase = 0.0, double samples = 800.0)
-        {
-            var line = new Line();
-            double x1, y1;
-            double baseline = y0;
-
-            for (int i = 1; i <= samples; i++)
-            {
-                double wt = amplitude * Math.Sin(2.0 * Math.PI * frequency * i / samples);
-                x1 = i;
-                y1 = baseline - wt;
-                g.DrawLine(brush, width, x0, y0, x1, y1);
-                x0 = x1;
-                y0 = y1;
-
-
-            }
-
-            g.Children.Add(line);
-            line.Stroke = Brushes.Red;
-            line.StrokeThickness = 2;
-            line.X1 = 0;
-            line.Y1 = 0;
-            Storyboard sb = new Storyboard();
-            DoubleAnimation da = new DoubleAnimation(line.Y2, 100, new Duration(new TimeSpan(0, 0, 1)));
-            DoubleAnimation da1 = new DoubleAnimation(line.X2, 100, new Duration(new TimeSpan(0, 0, 1)));
-            Storyboard.SetTargetProperty(da, new PropertyPath("(Line.Y2)"));
-            Storyboard.SetTargetProperty(da1, new PropertyPath("(Line.X2)"));
-            sb.Children.Add(da);
-            sb.Children.Add(da1);
-
-            line.BeginStoryboard(sb);
         }
     }
 }
