@@ -1,0 +1,112 @@
+﻿<Page x:Class="ecgPaperDraw.Views.ECGStoryboard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
+      xmlns:local="clr-namespace:ecgPaperDraw.Views"
+      mc:Ignorable="PresentationOptions" Margin="20"
+      Title="ECGStoryboard">
+    <Page.Resources>
+        <PathGeometry x:Key="Path"
+        Figures="M 0.499939,48.6606C 2.42746,45.1911 5.8242,38.2785 6.31174,38.4952C 8.01431,39.2519 8.79037,48.8331 10.0613,50.9936C 10.9917,52.5753 12.5007,54.7948 14.3107,54.4932C 14.79,54.4133 24.8544,43.5739 25.3094,43.7445C 25.8327,43.9408 27.7953,47.7509 28.8089,47.2441C 30.3381,46.4795 34.1497,41.6631 34.5582,41.7448C 34.8951,41.8122 38.1494,47.8282 39.8075,47.994C 43.0506,48.3183 45.0782,44.0683 48.0565,42.7447C 51.3824,41.2665 55.0088,44.9259 58.5552,45.7443C 61.3347,46.3857 68.9706,45.4943 68.9706,45.4943L 76.1363,26.1634L 81.3024,78.6568L 88.6348,0.499934L 94.634,64.3253C 94.634,64.3253 105.251,33.0223 105.549,33.2458C 106.146,33.693 112.871,46.313 117.298,46.9941C 121.597,47.6555 125.611,44.3467 129.546,42.4947C 131.287,41.6756 133.221,40.1366 135.046,40.7449C 137.558,41.5823 139.66,43.731 142.295,43.9945C 148.264,44.5914 154.41,42.8179 160.292,43.9945C 162.387,44.4133 164.163,46.4216 166.292,46.2442C 169.979,45.9369 173.59,44.7444 177.29,44.7444C 180.217,44.7444 183.2,46.2042 186.039,45.4943" 
+        PresentationOptions:Freeze="True" />
+
+
+
+        <Storyboard x:Key="SB">
+            <MatrixAnimationUsingPath
+            Storyboard.TargetProperty="(UIElement.RenderTransform).Matrix"
+            BeginTime="0:0:0"
+            Duration="0:0:5" DoesRotateWithTangent="True"
+            RepeatBehavior="Forever" PathGeometry="{StaticResource Path}" >
+            </MatrixAnimationUsingPath>
+        </Storyboard>
+
+        <Storyboard x:Key="SB2">
+            <MatrixAnimationUsingPath
+            Storyboard.TargetProperty="(UIElement.RenderTransform).Matrix"
+            BeginTime="0:0:0.05"
+            Duration="0:0:5" DoesRotateWithTangent="True"
+            RepeatBehavior="Forever" PathGeometry="{StaticResource Path}" >
+            </MatrixAnimationUsingPath>
+        </Storyboard>
+        <Storyboard x:Key="SB3">
+            <MatrixAnimationUsingPath
+            Storyboard.TargetProperty="(UIElement.RenderTransform).Matrix"
+            BeginTime="0:0:0.1"
+            Duration="0:0:5" DoesRotateWithTangent="True"
+            RepeatBehavior="Forever" PathGeometry="{StaticResource Path}" >
+            </MatrixAnimationUsingPath>
+        </Storyboard>
+        <Storyboard x:Key="SB4">
+            <MatrixAnimationUsingPath
+            Storyboard.TargetProperty="(UIElement.RenderTransform).Matrix"
+            BeginTime="0:0:0.15"
+            Duration="0:0:5" DoesRotateWithTangent="True"
+            RepeatBehavior="Forever" PathGeometry="{StaticResource Path}" >
+            </MatrixAnimationUsingPath>
+        </Storyboard>
+    </Page.Resources>
+    <Canvas Width="400" Height="400">
+        <Ellipse Fill="Black" Width="5" Height="3" >
+            <Ellipse.RenderTransform>
+                <MatrixTransform>
+                    <MatrixTransform.Matrix >
+                        <Matrix />
+                    </MatrixTransform.Matrix>
+                </MatrixTransform>
+            </Ellipse.RenderTransform>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource SB}" />
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+
+        <Ellipse Fill="Black" Opacity=".6" Width="5" Height="3" >
+            <Ellipse.RenderTransform>
+                <MatrixTransform>
+                    <MatrixTransform.Matrix >
+                        <Matrix />
+                    </MatrixTransform.Matrix>
+                </MatrixTransform>
+            </Ellipse.RenderTransform>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource SB2}" />
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+
+        <Ellipse Fill="Black" Opacity=".4" Width="5" Height="3" >
+            <Ellipse.RenderTransform>
+                <MatrixTransform>
+                    <MatrixTransform.Matrix >
+                        <Matrix />
+                    </MatrixTransform.Matrix>
+                </MatrixTransform>
+            </Ellipse.RenderTransform>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource SB3}" />
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+
+        <Ellipse Fill="Black" Opacity=".2" Width="5" Height="3" >
+            <Ellipse.RenderTransform>
+                <MatrixTransform>
+                    <MatrixTransform.Matrix >
+                        <Matrix />
+                    </MatrixTransform.Matrix>
+                </MatrixTransform>
+            </Ellipse.RenderTransform>
+            <Ellipse.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard Storyboard="{StaticResource SB4}" />
+                </EventTrigger>
+            </Ellipse.Triggers>
+        </Ellipse>
+    </Canvas>
+</Page>
