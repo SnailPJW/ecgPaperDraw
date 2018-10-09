@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using ecgPaperDraw.ViewModels;
@@ -15,6 +16,10 @@ namespace ecgPaperDraw
     public partial class MainWindow : MetroWindow
     {
         PaperViewModel paperVM;
+        DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+        dispatcherTimer.Interval = new TimeSpan(0,5,0);
+        dispatcherTimer.Start();
         public MainWindow()
         {
             InitializeComponent();
@@ -46,22 +51,9 @@ namespace ecgPaperDraw
             myCanvas.DrawSine(Brushes.Black, 3,0,paper2mv/2,paperVM.BigBlock);
         }
 
-        private MetroWindow accentThemeTestWindow;
-
-        private void ChangeAppStyleButtonClick(object sender, RoutedEventArgs e)
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            if (accentThemeTestWindow != null)
-            {
-                accentThemeTestWindow.Activate();
-                return;
-            }
-
-            accentThemeTestWindow = new AccentStyleWindow();
-            accentThemeTestWindow.Owner = this;
-            accentThemeTestWindow.Closed += (o, args) => accentThemeTestWindow = null;
-            accentThemeTestWindow.Left = this.Left + this.ActualWidth / 2.0;
-            accentThemeTestWindow.Top = this.Top + this.ActualHeight / 2.0;
-            accentThemeTestWindow.Show();
+            // code goes here
         }
     }
     public static class CanvasExt
@@ -93,6 +85,39 @@ namespace ecgPaperDraw
                 x0 = x1;
                 y0 = y1;
             }
+        }
+        public static void DrawSineAnimated(this Canvas g, Brush brush, double width, double x0 = 0.0, double y0 = 180.0, double amplitude = 75.0, double frequency = 6.0, double phase = 0.0, double samples = 800.0)
+        {
+            var line = new Line();
+            double x1, y1;
+            double baseline = y0;
+
+            for (int i = 1; i <= samples; i++)
+            {
+                double wt = amplitude * Math.Sin(2.0 * Math.PI * frequency * i / samples);
+                x1 = i;
+                y1 = baseline - wt;
+                g.DrawLine(brush, width, x0, y0, x1, y1);
+                x0 = x1;
+                y0 = y1;
+
+
+            }
+
+            g.Children.Add(line);
+            line.Stroke = Brushes.Red;
+            line.StrokeThickness = 2;
+            line.X1 = 0;
+            line.Y1 = 0;
+            Storyboard sb = new Storyboard();
+            DoubleAnimation da = new DoubleAnimation(line.Y2, 100, new Duration(new TimeSpan(0, 0, 1)));
+            DoubleAnimation da1 = new DoubleAnimation(line.X2, 100, new Duration(new TimeSpan(0, 0, 1)));
+            Storyboard.SetTargetProperty(da, new PropertyPath("(Line.Y2)"));
+            Storyboard.SetTargetProperty(da1, new PropertyPath("(Line.X2)"));
+            sb.Children.Add(da);
+            sb.Children.Add(da1);
+
+            line.BeginStoryboard(sb);
         }
     }
 }

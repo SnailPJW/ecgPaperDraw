@@ -35,6 +35,6 @@
         </metroControls:WindowCommands>
     </metroControls:MetroWindow.RightWindowCommands>
     <Grid x:Name="myGrid">
-        <Canvas x:Name="myCanvas"></Canvas>
+        <Canvas x:Name="myCanvas"/>
     </Grid>
 </metroControls:MetroWindow>
