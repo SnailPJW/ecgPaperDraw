@@ -62,8 +62,10 @@ namespace ecgPaperDraw
                 line.Y2 = line.Y1 = printPoints[i].Y;
                 myCanvas.Children.Add(line);
                 Storyboard sb = new Storyboard();
-                DoubleAnimation da = new DoubleAnimation(line.X2, printPoints[i+1].X, new Duration(new TimeSpan(0, 0, 10)));
-                DoubleAnimation da1 = new DoubleAnimation(line.Y2, printPoints[i+1].Y, new Duration(new TimeSpan(0, 0, 10)));
+                DoubleAnimation da = new DoubleAnimation(line.X2, printPoints[i+1].X, new Duration(new TimeSpan(0, 0, 1)));
+                DoubleAnimation da1 = new DoubleAnimation(line.Y2, printPoints[i+1].Y, new Duration(new TimeSpan(0, 0, 1)));
+                da.BeginTime = TimeSpan.FromMilliseconds(i * 15);
+                da1.BeginTime = TimeSpan.FromMilliseconds(i * 15);
                 Storyboard.SetTargetProperty(da, new PropertyPath("(Line.X2)"));
                 Storyboard.SetTargetProperty(da1, new PropertyPath("(Line.Y2)"));
                 sb.Children.Add(da);
