@@ -48,14 +48,50 @@ namespace ecgPaperDraw
             }
             myCanvas.DrawSine(Brushes.Black, 3,0,paper2mv/2,paperVM.BigBlock);
 
-            dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 5, 0);
-            dispatcherTimer.Start();
+            //dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
+            //dispatcherTimer.Interval = new TimeSpan(0, 5, 0);
+            //dispatcherTimer.Start();
+            Point[] printPoints = GetSinePoints();
+
+            for (int i = 0; i < printPoints.Length-1; i++)
+            {
+                Line line = new Line();
+                line.Stroke = Brushes.Red;
+                line.StrokeThickness = 2;
+                line.X2 = line.X1 = printPoints[i].X;
+                line.Y2 = line.Y1 = printPoints[i].Y;
+                myCanvas.Children.Add(line);
+                Storyboard sb = new Storyboard();
+                DoubleAnimation da = new DoubleAnimation(line.X2, printPoints[i+1].X, new Duration(new TimeSpan(0, 0, 10)));
+                DoubleAnimation da1 = new DoubleAnimation(line.Y2, printPoints[i+1].Y, new Duration(new TimeSpan(0, 0, 10)));
+                Storyboard.SetTargetProperty(da, new PropertyPath("(Line.X2)"));
+                Storyboard.SetTargetProperty(da1, new PropertyPath("(Line.Y2)"));
+                sb.Children.Add(da);
+                sb.Children.Add(da1);
+
+                line.BeginStoryboard(sb);
+            }
         }
 
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            // code goes here
+            // code goes here  
+            
+        }
+        Point[] GetSinePoints(double x0 = 0.0, double y0 = 180.0, double amplitude = 75.0, double frequency = 6.0, double phase = 0.0, int samples = 800)
+        {
+            Point[] points = new Point[samples];
+            double x1, y1;
+            double baseline = y0;
+            points[0] = new Point(x0, y0);
+            for (int i = 1; i < samples; i++)
+            {
+                double wt = amplitude * Math.Sin(2.0 * Math.PI * frequency * i / samples);
+                x1 = i;
+                y1 = baseline - wt;
+                points[i] = new Point(x1, y1);
+            }
+            return points;
         }
     }
     public static class CanvasExt
